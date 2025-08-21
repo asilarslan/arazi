@@ -5,7 +5,7 @@
     
    **GPS Destekli Arazi Ölçüm Uygulaması**
     
-   [![App Store](https://img.shields.io/badge/İndir-App%20Store-000000?style=for-the-badge&logo=apple&logoColor=white)](https://apps.apple.com/us/app/fields-area-measure/id6740893569)
+   [![App Store](https://img.shields.io/badge/İndir-App%20Store-000000?style=for-the-badge&logo=apple&logoColor=white)](https://apps.apple.com/tr/app/arazi-%C3%B6l%C3%A7me/id6740893569?l=tr)
 </div>
 
 ## 📖 Hakkında
@@ -189,7 +189,7 @@ Landing page analitik için hazır olarak tasarlanmıştır ancak gizliliği kor
 ## 🔗 App Store Bilgileri
 
 - **Uygulama ID**: 6740893569
-- **App Store URL**: https://apps.apple.com/us/app/fields-area-measure/id6740893569
+- **App Store URL**: https://apps.apple.com/tr/app/arazi-%C3%B6l%C3%A7me/id6740893569?l=tr
 - **Geliştirici**: Asil Arslan
 - **Destek E-posta**: asilarslan93@gmail.com
 - **Kategori**: Yardımcı Programlar
@@ -222,7 +222,7 @@ Landing page analitik için hazır olarak tasarlanmıştır ancak gizliliği kor
 - **Geliştirici**: Asil Arslan
 - **E-posta**: asilarslan93@gmail.com
 - **Website**: https://arazi.app/
-- **App Store**: [Arazi Alan Ölçer](https://apps.apple.com/us/app/fields-area-measure/id6740893569)
+- **App Store**: [Arazi Alan Ölçer](https://apps.apple.com/tr/app/arazi-%C3%B6l%C3%A7me/id6740893569?l=tr)
 
 ## 📄 Lisans
 
@@ -248,5 +248,5 @@ Bu landing page, Arazi Alan Ölçer uygulaması tanıtımı için özel yazılı
 <div align="center">
     <p><strong>GPS hassasiyet teknolojisi ile araziyi ölçün ve alanı anında hesaplayın.</strong></p>
     
-    [![App Store'dan İndir](https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83)](https://apps.apple.com/us/app/fields-area-measure/id6740893569)
+    [![App Store'dan İndir](https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/tr-tr?size=250x83)](https://apps.apple.com/tr/app/arazi-%C3%B6l%C3%A7me/id6740893569?l=tr)
 </div>
