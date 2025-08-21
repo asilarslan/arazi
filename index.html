@@ -1,10 +1,675 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Arazi Ölçme - Mesafe Hesaplama</title>
-  </head>
-  <body>
-    <h1>Arazi Ölçme - Mesafe Hesaplama'ya Hoş Geldiniz</h1>
-    <p>Bu site yapım aşamasındadır.</p>
-  </body>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arazi Alan Ölçer - GPS Arazi Ölçüm Uygulaması | Tarla, Alan ve Mesafe Ölçümü</title>
+    <meta name="description" content="Arazi Alan Ölçer GPS uygulaması ile arazi alanlarını anında ölçün. Tarım, haritacılık, inşaat ve emlak için tarla alanları, mesafeler ve sınırları hesaplayın. Ücretsiz iOS uygulaması indirin.">
+    <meta name="keywords" content="arazi alan ölçer, arazi ölçümü, GPS alan hesaplayıcı, tarla ölçümü, alan hesaplayıcı, alan ölçüm uygulaması, arazi haritacılığı, mülk ölçümü, mesafe ölçümü, GPS ölçümü">
+    <meta name="author" content="Asil Arslan">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arazi.app">
+    <meta property="og:title" content="Arazi Alan Ölçer - GPS Arazi Ölçüm Uygulaması">
+    <meta property="og:description" content="GPS ile arazi alanlarını anında ölçün. Tarım, haritacılık, inşaat ve emlak için tarla alanları, mesafeler ve sınırları hesaplayın.">
+    <meta property="og:image" content="https://arazi.app/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://arazi.app">
+    <meta property="twitter:title" content="Arazi Alan Ölçer - GPS Arazi Ölçüm Uygulaması">
+    <meta property="twitter:description" content="GPS ile arazi alanlarını anında ölçün. Tarım, haritacılık, inşaat ve emlak için tarla alanları, mesafeler ve sınırları hesaplayın.">
+    <meta property="twitter:image" content="https://arazi.app/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://arazi.app">
+    
+    <!-- App Store Link -->
+    <meta name="apple-itunes-app" content="app-id=6740893569">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Arazi Alan Ölçer",
+        "description": "Arazi Alan Ölçümü – Araziyi Ölçün ve Alanı Anında Hesaplayın! Hızlı ve Doğru Arazi Ölçümleri. Sadece birkaç dokunuşla tarlaları, arazileri ve alanları kolayca ölçün!",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "iOS",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "downloadUrl": "https://apps.apple.com/us/app/fields-area-measure/id6740893569",
+        "author": {
+            "@type": "Person",
+            "name": "Asil Arslan"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "ratingCount": "1"
+        }
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="field-area-measure-logo.png">
+    <link rel="apple-touch-icon" href="field-area-measure-logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="field-area-measure-logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="field-area-measure-logo.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #006ee6 0%, #0066cc 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #006ee6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            padding: 2px;
+            box-shadow: 0 2px 6px rgba(0, 110, 230, 0.2);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #006ee6;
+        }
+        
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .app-store-badge {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .app-store-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .features {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .how-it-works {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            padding: 80px 0;
+            color: white;
+        }
+        
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .step-number {
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        
+        .testimonials {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #006ee6;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #006ee6 0%, #0066cc 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            z-index: 999;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+            display: block;
+        }
+        
+        .nav-links.active {
+            display: flex;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                width: 200px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                padding: 1rem;
+                gap: 1rem;
+                z-index: 1001;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 0;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            
+            .features-grid, .steps, .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-logo {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        .seo-content {
+            background: white;
+            padding: 60px 0;
+        }
+        
+        .seo-content h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .seo-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .keywords {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .keywords h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .keywords ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            list-style: none;
+        }
+        
+        .keywords li {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: #006ee6;
+            border: 1px solid #006ee6;
+        }
+        
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="field-area-measure-logo.png" alt="Arazi Alan Ölçer Logo" class="header-logo">
+                Arazi Alan Ölçer
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Özellikler</a></li>
+                <li><a href="#how-it-works">Nasıl Çalışır</a></li>
+                <li><a href="#testimonials">Yorumlar</a></li>
+                <li><a href="#download">İndir</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Araziyi Ölçün ve Alanı Anında Hesaplayın</h1>
+                <p>GPS hassasiyeti ile hızlı ve doğru arazi ölçümleri. Çiftçiler, haritacılar, mühendisler ve açık hava tutkunları için mükemmel. Sadece birkaç dokunuşla tarlaları, mülkleri ve alanları ölçün!</p>
+                <a href="https://apps.apple.com/us/app/fields-area-measure/id6740893569" class="cta-button">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1704153600" alt="App Store'dan İndir" class="app-store-badge">
+                </a>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Güçlü Arazi Ölçüm Özellikleri</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📐</div>
+                        <h3>Anında Alan Hesaplama</h3>
+                        <p>Herhangi bir şekli ölçmek için haritaya dokunun. GPS hassasiyeti ile anında alan ve mesafe hesaplamaları alın.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📏</div>
+                        <h3>Çoklu Birimler</h3>
+                        <p>Metrekare, hektar, dönüm, kare feet ve daha fazlasından seçin. Her ölçüm ihtiyacı için mükemmel.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛰️</div>
+                        <h3>GPS ve Manuel Ölçüm</h3>
+                        <p>Otomatik konumlandırma için GPS konumunu kullanın veya maksimum doğruluk ve esneklik için manuel olarak nokta ekleyin.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>Kaydet ve Rapor Dışa Aktar</h3>
+                        <p>Ölçümlerinizi saklayın ve profesyonel kullanım için PDF veya CSV dosyaları olarak detaylı raporları dışa aktarın.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📶</div>
+                        <h3>Çevrimdışı Mod</h3>
+                        <p>İnternet bağlantısı olmadan her yerde ölçüm yapın. Uzak konumlar ve saha çalışması için mükemmel.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Kullanımı Kolay Arayüz</h3>
+                        <p>Herkesin kullanabileceği basit ve sezgisel tasarım. Eğitim gerekmez - hemen ölçüm yapmaya başlayın.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>Arazi Alan Ölçer Nasıl Çalışır</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Konum Seçin</h3>
+                        <p>GPS veya manuel nokta yerleştirme kullanarak haritada tarlanızı veya alanınızı seçin</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Sınırları İşaretleyin</h3>
+                        <p>Ölçülecek tarlanızın veya alanınızın köşelerini ve sınırlarını işaretlemek için dokunun</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Sonuçları Alın</h3>
+                        <p>Tercih ettiğiniz birimlerde alan, çevre ve mesafe ölçümlerini anında görün</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2>Profesyoneller Ne Diyor</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <p>"Çiftliğimi ölçmek için mükemmel! GPS doğruluğu etkileyici ve dışa aktarma özelliği raporlarda bana zaman kazandırıyor."</p>
+                        <div class="testimonial-author">- John K., Çiftçi</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Haritacı olarak, bu uygulama hızlı saha ölçümleri için vazgeçilmez hale geldi. Çevrimdışı mod oyun değiştirici."</p>
+                        <div class="testimonial-author">- Sarah M., Arazi Haritacısı</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Mülk değerlendirmesi için harika araç! Çoklu birim seçenekleri ve PDF dışa aktarma müşteri sunumlarını profesyonel yapıyor."</p>
+                        <div class="testimonial-author">- Mike R., Emlak Acentesi</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seo-content">
+            <div class="container">
+                <h2>Nihai GPS Arazi Ölçüm Aracı</h2>
+                <p>Arazi Alan Ölçer, profesyonellerin ve tutkunların arazi alanlarını, tarla sınırlarını ve mülk boyutlarını nasıl ölçtüğünü devrim niteliğinde değiştiriyor. Gelişmiş GPS teknolojimiz, hassas haritalamayı kullanıcı dostu arayüzle birleştirerek, iOS'ta mevcut olan en kapsamlı arazi ölçüm uygulamasını oluşturuyor.</p>
+                
+                <p>Tarımsal arazi yönetimi, mülk araştırmaları yapma, inşaat projeleri planlama veya açık hava alanlarını keşfetme olsun, Arazi Alan Ölçer doğru ölçümlere anında erişim sağlar. Uygulamamız düzensiz tarlalar, mülk sınırları, çiftlik parselleri ve rekreasyon alanları dahil olmak üzere çeşitli ölçüm senaryolarını destekler.</p>
+                
+                <h2>Birden Fazla Sektör İçin Mükemmel</h2>
+                <p>Arazi Alan Ölçer, dünya çapında tarım profesyonelleri, arazi haritacıları, inşaat yöneticileri, emlak acenteleri, mülk değerlendiricileri ve açık hava tutkunlarına hizmet verir. Uygulama, ekin tarlaları, mera alanları, inşaat sahaları, mülk parselleri, parklar, yollar ve kamp alanları için ölçümü destekler.</p>
+                
+                <div class="keywords">
+                    <h3>Desteklenen Ölçüm Türleri ve Uygulamalar</h3>
+                    <ul>
+                        <li>Tarımsal Tarlalar</li>
+                        <li>Mülk Sınırları</li>
+                        <li>İnşaat Sahaları</li>
+                        <li>Çiftlik Arazi Parselleri</li>
+                        <li>Mera Alanları</li>
+                        <li>Bahçe Alanları</li>
+                        <li>Bina Parselleri</li>
+                        <li>Rekreasyon Alanları</li>
+                        <li>Yürüyüş Yolları</li>
+                        <li>Kamp Alanları</li>
+                        <li>Spor Sahaları</li>
+                        <li>Otopark Alanları</li>
+                    </ul>
+                </div>
+                
+                <h2>Doğru Sonuçlar İçin Gelişmiş GPS Teknolojisi</h2>
+                <p>Özel GPS algoritmalarımız, çeşitli arazi koşullarında maksimum doğruluk için optimize edilmiştir, hem küçük parseller hem de büyük tarımsal alanlar için güvenilir ölçümler sağlar. Uygulama, düzenli güncellemeler ve gelişmiş ölçüm yetenekleri ile sürekli iyileşir.</p>
+                
+                <p>Arazi Alan Ölçer, ilk harita yüklemesinden sonra çevrimdışı modda çalışır, bu da uzak konumlar, kırsal alanlar veya sınırlı internet bağlantısı olan yerlerde kullanım için mükemmeldir. Sezgisel arayüz, hem yeni başlayanlar hem de profesyonellerin kolayca gezinmesini ve hızlıca doğru sonuçlar almasını sağlar.</p>
+            </div>
+        </section>
+
+        <section id="download" class="cta-section">
+            <div class="container">
+                <h2>Bugün Arazi Ölçümüne Başlayın</h2>
+                <p>Binlerce profesyonelin doğru arazi ölçümleri için Arazi Alan Ölçer'e güvendiği gibi siz de katılın</p>
+                <a href="https://apps.apple.com/us/app/fields-area-measure/id6740893569" class="cta-button">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1704153600" alt="App Store'dan İndir" class="app-store-badge">
+                </a>
+                <br><br>
+                <p style="font-size: 0.9rem; opacity: 0.8;">iPhone, iPad ve Mac ile uyumlu • iOS 17.6+ Gerekli • Premium Seçeneklerle Ücretsiz</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:asilarslan93@gmail.com">Destek</a>
+                <a href="terms-of-use.html">Kullanım Şartları</a>
+                <a href="privacy-policy.html">Gizlilik Politikası</a>
+                <a href="https://apps.apple.com/us/app/fields-area-measure/id6740893569">App Store</a>
+            </div>
+            <p>&copy; 2025 Asil Arslan tarafından Arazi Alan Ölçer. Tüm hakları saklıdır.</p>
+            <p>GPS hassasiyet teknolojisi ile araziyi ölçün ve alanı anında hesaplayın.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            console.log('Menu toggle clicked');
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) {
+                navLinks.classList.toggle('active');
+                console.log('Menu active state:', navLinks.classList.contains('active'));
+            }
+        }
+
+        // Close menu when clicking on a link
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    document.getElementById('navLinks').classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                const nav = document.querySelector('.nav-links');
+                const hamburger = document.querySelector('.hamburger');
+                if (nav && hamburger && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+                    nav.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
 </html>

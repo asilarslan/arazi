@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
+    <!-- Ana Sayfa -->
+    <url>
+        <loc>https://arazi.app/</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Gizlilik Politikası -->
+    <url>
+        <loc>https://arazi.app/privacy-policy.html</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <!-- Kullanım Şartları -->
+    <url>
+        <loc>https://arazi.app/terms-of-use.html</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <!-- Logo -->
+    <url>
+        <loc>https://arazi.app/field-area-measure-logo.png</loc>
+        <lastmod>2025-01-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+</urlset>
