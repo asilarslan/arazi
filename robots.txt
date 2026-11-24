@@ -1,16 +1,4 @@
 User-agent: *
 Allow: /
 
-# Ana sayfa
-Allow: /index.html
-Allow: /privacy-policy.html
-Allow: /terms-of-use.html
-
-# Logo ve görseller
-Allow: /field-area-measure-logo.png
-
-# Sitemap
 Sitemap: https://arazi.app/sitemap.xml
-
-# Crawl-delay (isteğe bağlı)
-Crawl-delay: 1
