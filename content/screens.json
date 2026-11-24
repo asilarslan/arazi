@@ -1,0 +1,37 @@
+{
+ "tr-measure": {
+  "bg": "rgb(255,255,255)",
+  "dark": false,
+  "h": 1252
+ },
+ "tr-detail": {
+  "bg": "rgb(255,255,255)",
+  "dark": false,
+  "h": 1252
+ },
+ "tr-list": {
+  "bg": "rgb(246,247,250)",
+  "dark": false,
+  "h": 1252
+ },
+ "tr-site0": {
+  "bg": "rgb(6,16,29)",
+  "dark": true,
+  "h": 1252
+ },
+ "tr-site1": {
+  "bg": "rgb(6,16,29)",
+  "dark": true,
+  "h": 1252
+ },
+ "tr-site2": {
+  "bg": "rgb(6,16,29)",
+  "dark": true,
+  "h": 1252
+ },
+ "tr-site3": {
+  "bg": "rgb(6,16,29)",
+  "dark": true,
+  "h": 1252
+ }
+}
